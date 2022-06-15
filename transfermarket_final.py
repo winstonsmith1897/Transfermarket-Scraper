@@ -213,26 +213,6 @@ def value(page):
   value_splitted = str(value).split('➤ Market value: ', 1)[1].split(' ➤')[0]
   return value_splitted
 
-def player_rating(page):
-  val = value(page)
-  age = player_age(page)
-  try:
-    try:
-      abs_val = int(val.split('£', 1)[1].split('.')[0])
-    except ValueError:
-      abs_val = int(val.split('£', 1)[1].split('Th.')[0]) * 0.1
-    abs_age = 2022 - int(age.split(', ', 1)[1].split(' ')[0])
-    mid_rating = (abs_age / abs_val)
-    if abs_val >= abs_age :
-      rating = mid_rating * 10
-    else :
-      rating = mid_rating
-    if rating >= 8 or rating <= 4:
-      rating = 6
-  except IndexError:
-    rating = 6
-  return rating
-
 from tqdm import tqdm
 
 def create_player_card(id, profile):
